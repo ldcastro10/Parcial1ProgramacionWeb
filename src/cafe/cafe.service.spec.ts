@@ -88,7 +88,7 @@ describe('CafeService', () => {
       tiendas: []
     }
 
-    await expect(() => service.create(cafe)).rejects.toHaveProperty("message", "precio negativo")
+    await expect(() => service.create(cafe)).rejects.toHaveProperty("message", "The coffee has a negative price")
 
   });
 

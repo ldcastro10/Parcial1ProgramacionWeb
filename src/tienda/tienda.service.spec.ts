@@ -88,7 +88,7 @@ describe('TiendaService', () => {
       cafes: []
     }
 
-    await expect(() => service.create(tienda)).rejects.toHaveProperty("message", "telefono erroneo")
+    await expect(() => service.create(tienda)).rejects.toHaveProperty("message", "The phone does not have 10 characters")
   });
 
   it('must have a valid phone2', async () => {
