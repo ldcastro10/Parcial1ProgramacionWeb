@@ -84,7 +84,7 @@ describe('CafeService', () => {
       id: "",
       nombre: faker.lorem.sentence(),
       descripcion: faker.lorem.sentence(),
-      precio: Math.floor(Math.random() * 1000),
+      precio: -10,
       tiendas: []
     }
 

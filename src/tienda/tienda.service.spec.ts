@@ -84,7 +84,7 @@ describe('TiendaService', () => {
       id: "",
       nombre: faker.lorem.sentence(),
       direccion: faker.lorem.sentence(),
-      telefono: Math.random().toString(36).substring(2,12),
+      telefono: "0110",
       cafes: []
     }
 
