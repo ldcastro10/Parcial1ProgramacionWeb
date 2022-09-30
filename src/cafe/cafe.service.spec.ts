@@ -92,6 +92,24 @@ describe('CafeService', () => {
 
   });
 
+  it('price of coffee must be positive2', async () => {
+    const cafe: CafeEntity = {
+      id: "",
+      nombre: faker.lorem.sentence(),
+      descripcion: faker.lorem.sentence(),
+      precio: Math.floor(Math.random() * 1000),
+      tiendas: []
+    }
+
+    const newCafe: CafeEntity = await service.create(cafe);
+    expect(newCafe).not.toBeNull();
+
+    const storedCafe: CafeEntity = await repository.findOne({where: {id: newCafe.id}})
+    expect(cafe.precio).toBeGreaterThan(0)
+    expect(storedCafe.precio).toBeGreaterThan(0)
+  });
+  
+
   it('update should modify a cafe', async () => {
     const cafe: CafeEntity = cafesList[0];
     cafe.nombre = "New name";

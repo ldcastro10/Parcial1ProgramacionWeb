@@ -91,6 +91,23 @@ describe('TiendaService', () => {
     await expect(() => service.create(tienda)).rejects.toHaveProperty("message", "telefono erroneo")
   });
 
+  it('must have a valid phone2', async () => {
+    const tienda: TiendaEntity = {
+      id: "",
+      nombre: faker.lorem.sentence(),
+      direccion: faker.lorem.sentence(),
+      telefono: Math.random().toString(36).substring(2,12),
+      cafes: []
+    }
+
+    const newTienda: TiendaEntity = await service.create(tienda);
+    expect(newTienda).not.toBeNull();
+
+    const storedTienda: TiendaEntity = await repository.findOne({where: {id: newTienda.id}})
+    expect(tienda.telefono.length).toEqual(10)
+    expect(storedTienda.telefono.length).toEqual(10)
+  });
+
   it('update should modify a tienda', async () => {
     const tienda: TiendaEntity = tiendasList[0];
     tienda.nombre = "New name";
