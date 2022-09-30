@@ -88,12 +88,8 @@ describe('CafeService', () => {
       tiendas: []
     }
 
-    const newCafe: CafeEntity = await service.create(cafe);
-    expect(newCafe).not.toBeNull();
+    await expect(() => service.create(cafe)).rejects.toHaveProperty("message", "precio negativo")
 
-    const storedCafe: CafeEntity = await repository.findOne({where: {id: newCafe.id}})
-    expect(cafe.precio).toBeGreaterThan(0)
-    expect(storedCafe.precio).toBeGreaterThan(0)
   });
 
   it('update should modify a cafe', async () => {

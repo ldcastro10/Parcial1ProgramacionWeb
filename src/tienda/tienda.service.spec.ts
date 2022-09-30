@@ -88,12 +88,7 @@ describe('TiendaService', () => {
       cafes: []
     }
 
-    const newTienda: TiendaEntity = await service.create(tienda);
-    expect(newTienda).not.toBeNull();
-
-    const storedTienda: TiendaEntity = await repository.findOne({where: {id: newTienda.id}})
-    expect(tienda.telefono.length).toEqual(10)
-    expect(storedTienda.telefono.length).toEqual(10)
+    await expect(() => service.create(tienda)).rejects.toHaveProperty("message", "telefono erroneo")
   });
 
   it('update should modify a tienda', async () => {
